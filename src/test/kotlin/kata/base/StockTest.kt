@@ -6,13 +6,11 @@ package kata.base
 
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 import io.kotest.property.Arb
 import io.kotest.property.arbitrary.arbitrary
 import io.kotest.property.arbitrary.int
 import io.kotest.property.arbitrary.next
 import io.kotest.property.forAll
-import org.junit.jupiter.api.Assertions.assertEquals
 import kotlin.random.Random
 
 class StockTest : WordSpec({
@@ -42,6 +40,34 @@ class StockTest : WordSpec({
             forAll(anyStock, anyStock) { a, b ->
                 a + b == Stock(a.value + b.value)
             }
+        }
+    }
+
+    "minimum" should {
+        "return the minimum of two stocks" {
+            val a = Stock(1)
+            val b = Stock(50)
+
+            val result = a + b
+
+            result.minimum shouldBe 1
+        }
+
+        "return the minimum of three stocks" {
+            val a = Stock(0)
+            val b = Stock(20)
+            val c = Stock(50)
+            val result = a + ( b + c)
+
+            result.minimum shouldBe 0
+        }
+        "return the average stock" {
+            val a = Stock(0)
+            val b = Stock(20)
+            val c = Stock(50)
+            val result = a + ( b + c)
+9
+            result.average shouldBe (0 + 20 + 50) / 3
         }
     }
 })
