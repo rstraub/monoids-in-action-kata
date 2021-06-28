@@ -1,8 +1,8 @@
 # Kotlin starter project
 
-* Gradle 6
-* Kotlin 1.3.70
-* Kotlin test & Junit 5
+* Gradle 7
+* Kotlin 1.5.10
+* Kotest
 
 # Running Tests
 Run tests with:
