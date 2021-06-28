@@ -3,13 +3,19 @@
  */
 package kata.base
 
+
 import io.kotest.core.spec.style.WordSpec
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.shouldNotBe
+import io.kotest.property.Arb
+import io.kotest.property.arbitrary.arbitrary
+import io.kotest.property.arbitrary.int
+import io.kotest.property.arbitrary.next
+import io.kotest.property.forAll
 import org.junit.jupiter.api.Assertions.assertEquals
 import kotlin.random.Random
 
-class StockTest: WordSpec({
+class StockTest : WordSpec({
     "combine" should {
         "50" {
             val result = Stock(20) + Stock(30)
@@ -32,7 +38,17 @@ class StockTest: WordSpec({
 
             a + b + c shouldBe b + c + a
         }
+        "pbt" {
+            forAll(anyStock, anyStock) { a, b ->
+                a + b == Stock(a.value + b.value)
+            }
+        }
     }
 })
 
 fun forAnyStock() = Stock(Random.nextInt())
+
+val anyStock = arbitrary { rs ->
+    val value = Arb.int(21, 150).next(rs)
+    Stock(value)
+}
