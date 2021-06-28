@@ -3,13 +3,12 @@
  */
 package kata.base
 
-import kotlin.test.Test
-import kotlin.test.assertNotNull
+import io.kotest.core.spec.style.WordSpec
+import io.kotest.matchers.shouldNotBe
 
-class AppTest {
-    @Test
-    fun testAppHasAGreeting() {
+class AppTest: WordSpec({
+    "testAppHasAGreeting" should {
         val classUnderTest = App()
-        assertNotNull(classUnderTest.greeting, "app should have a greeting")
+        classUnderTest.greeting shouldNotBe null
     }
-}
+})

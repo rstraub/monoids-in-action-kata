@@ -24,15 +24,15 @@ dependencies {
 
     // Use the Kotlin JDK 8 standard library.
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    testImplementation("io.kotest:kotest-runner-junit5:4.6.0")
+    testImplementation("io.kotest:kotest-property:4.6.0")
+}
 
-    // Use the Kotlin test library.
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-
-    // Use the Kotlin JUnit integration.
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+tasks.withType<Test> {
+    useJUnitPlatform()
 }
 
 application {
     // Define the main class for the application.
-    mainClassName = "kata.base.AppKt"
+    mainClass.set("kata.base.AppKt")
 }
