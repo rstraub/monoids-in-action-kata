@@ -66,7 +66,7 @@ class StockTest : WordSpec({
             val b = Stock(20)
             val c = Stock(50)
             val result = a + ( b + c)
-9
+
             result.average shouldBe (0 + 20 + 50) / 3
         }
     }
